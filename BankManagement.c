@@ -200,7 +200,7 @@ void delete(){
       if (feof(fp))
          break;
       
-      if(strcmp(c.password,pass) == 0)// && strcmp(c.accNo,ac) == 0)
+      if(strcmp(c.password,pass) && strcmp(c.accNo,ac) == 0)
       {
       f = 1;
       printf("account delete successfully!\n");
@@ -233,7 +233,7 @@ void balance(){
    fp = fopen("bank management.std","rb");
    while (fread(&c,sizeof(c),1,fp) == 1)
    {
-      if (strcmp(c.password,pass) == 0)
+      if (strcmp(c.password,pass) == 0 && strcmp(c.accNo,acc) == 0)
       {
         f = 1;
         printf("Bank Balance is: %d", c.balance);
@@ -242,6 +242,10 @@ void balance(){
      
    }
 
+   if (f == 0)
+   {
+     printf("account number or password is wrong!");
+   }
    
    fclose(fp);
 }
@@ -262,7 +266,7 @@ void transfer(){
 
    while (fread(&c, sizeof(c),1,fp) == 1)
    {
-      if (strcmp(c.password,pass) == 0)
+      if (strcmp(c.password,pass)  == 0)
       {
          f = 1;
          printf("enter the account no. to transfer amount to: ");
@@ -314,46 +318,38 @@ int main() {
     scanf("%d", &n);
     getchar();
 
-    if(n == 1){
-     NewAcc();
-    }
-    else if (n == 2)
+    switch (n)
     {
-      Login();
-    }
-    
-   else  if (n == 3)
-    {
-      balance();
-    }
-    
-   else if (n == 4)
-    {
-      transfer();
-
-    }
-
-   else if (n == 5)
-    {
-      addMoney();
-    }
-    else if (n == 6)
-    {
-     DebitMoney();
-    }
-    else if (n == 7)
-    {
-       delete();
-    }
-    else if(n == 8)
-    {
+    case 1:
+       NewAcc();
+      break;
+    case 2:
+       Login();
        break;
-    }
-    else
-    {
-      printf("invalid choice!");
+    case 3:
+       balance();
+       break;
+    case 4:
+       transfer();
+       break;
+    case 5:
+       addMoney();
+       break;
+    case 6:
+       DebitMoney();
+       break;
+    case 7:
+       delete();
+    case 8:
+        return 1;
+    
+    default: 
+     printf("you enter the wrong prefrence!!");
+     break;;
     }
    }
 
    return 0;
 }
+   
+   
