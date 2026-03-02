@@ -141,7 +141,7 @@ void DebitMoney(){
    char n[30];
    char pass[50];
    int d,flag=0;
-   printf("enter the name: ");
+   printf("enter the account no.: ");
    scanf("%29s",n);
 
    printf("enter the password: ");
@@ -152,7 +152,7 @@ void DebitMoney(){
     {
    
    
-   if(strcmp(c.password,pass) == 0)
+   if(strcmp(c.password,pass) == 0 && (c.accNo, n) == 0)
       {
          flag =1;
          printf("enter the amount to debit: ");
